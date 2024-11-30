@@ -1,0 +1,123 @@
+<!-- Navbar-->
+<header class="bg-light shadow-sm fixed-top" data-fixed-element>
+    <div class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand d-none d-sm-block me-3 me-xl-4 flex-shrink-0" routerLink="/home">
+                <img src="../../../assets/img/{{empresa.logo}}" width="142" alt="comercio llanero"></a>
+            <a class="navbar-brand d-sm-none me-2" routerLink="/home">
+                <img src="../../../assets/img/{{empresa.ico}}" [width]="empresa.sizeico" alt="comercio llanero">
+            </a>
+            <!-- Search-->
+            <div class="input-group d-none d-lg-flex flex-nowrap mx-4">
+                <i class="ci-search position-absolute top-50 start-0 translate-middle-y ms-3"></i>
+                <input (keyup.enter)="search(sea.value)" #sea class="form-control rounded w-100" type="text" placeholder="Buscar Productos">
+            </div>
+            <!-- Toolbar-->
+            <div class="navbar-toolbar d-flex flex-shrink-0 align-items-center ms-xl-2">
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sideNav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+                <a class="navbar-tool d-flex d-lg-none" href="#searchBox" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="searchBox">
+                    <span class="navbar-tool-tooltip">Buscar</span>
+                    <div class="navbar-tool-icon-box">
+                        <i class="navbar-tool-icon ci-search"></i>
+                    </div>
+                </a>
+
+                <a class="navbar-tool d-none d-lg-flex" href="#">
+                    <span class="navbar-tool-tooltip">Deseos</span>
+                    <div class="navbar-tool-icon-box">
+                        <i class="navbar-tool-icon ci-heart"></i>
+                    </div>
+                </a>
+
+                <div *ngIf="!isLoggedIn">
+                    <a class="navbar-tool ms-1 ms-lg-0 me-n1 me-lg-2" routerLink="/login">
+                        <div class="navbar-tool-icon-box">
+                            <i class="navbar-tool-icon ci-user"></i>
+                        </div>
+                        <div class="navbar-tool-text ms-n3">
+                            <small>Hola, Entrar a</small>Mi cuenta
+                        </div>
+                    </a>
+                </div>
+
+                <div *ngIf="isLoggedIn">
+                    <div class="btn-group dropdown">
+                        <a class="navbar-tool ms-1 ms-lg-0 me-n1 me-lg-2 dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-user"></i></div>
+                            <!-- <div class="navbar-tool-text ms-n3"><small>Hola, {{ user.name }}</small>Mi cuenta</div> -->
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <a [routerLink]="['dashboard/perfil']" class="dropdown-item">Perfil</a>
+                            <a [routerLink]="['dashboard/pedidos']" class="dropdown-item">Mis pedidos</a>
+                            <div class="dropdown-divider"></div>
+                            <button type="button" (click)="logout()" href="#" class="dropdown-item">Salir</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="navbar-tool dropdown ms-3">
+
+                    <a class="navbar-tool-icon-box bg-secondary dropdown-toggle" routerLink="/carrito">
+                        <!-- <span *ngIf="carrito.items.length > 0" class="navbar-tool-label"> {{ carrito.items.length }} </span> -->
+                        <i class="navbar-tool-icon ci-cart"></i>
+                    </a>
+
+                    <!-- <a class="navbar-tool-text" routerLink="/carrito">
+                        <small>Carrito</small>{{ carrito.total | currency:'COP':'symbol':'1.0-0' }}
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <div class="widget widget-cart px-3 pt-2 pb-3" style="width: 20rem;">
+                            <div style="height: 15rem;" data-simplebar data-simplebar-auto-hide="false">
+
+                                <div *ngIf="carrito.items.length === 0" class="alert alert-accent" role="alert">
+                                    <h4 class="pt-2 alert-heading">Carrito Vacio!</h4>
+                                    <p>Aun no has agregado productos al carrito</p>
+                                </div>
+
+                                <div class="widget-cart-item pb-2 border-bottom" *ngFor="let item of carrito.items; let i = index">
+                                    <button (click)="delItem(i)" class="btn-close text-danger" type="button" aria-label="Remove">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <div class="d-flex align-items-center">
+                                        <a class="d-block" [routerLink]="['/producto', item.product.pid]">
+                                            <img [src]=" item.product.img[0].img | imagen" width="64" alt="Product">
+                                        </a>
+                                        <div class="ps-2">
+                                            <h6 class="widget-product-title"><a href="grocery-single.html"> {{ item.product.name }} </a></h6>
+                                            <div class="widget-product-meta"><span class="text-accent me-2"> {{ item.price | currency: 'COP':'symbol':'1.0-0' }} </span><span class="text-muted">x {{item.qty}} </span></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="d-flex flex-wrap justify-content-between align-items-center pt-3">
+                                <div class="fs-sm me-2 py-2">
+                                    <span class="text-muted">Total:</span>
+                                    <span class="text-accent fs-base ms-1"> {{ carrito.total | currency:'COP':'symbol':'1.0-0' }} </span>
+                                </div>
+
+                                <a class="btn btn-primary btn-sm" routerLink="/carrito">
+                                    <i class="ci-card me-2 fs-base align-middle"></i>Carrito<i class="ci-arrow-right ms-1 me-n1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Search collapse-->
+    <div class="collapse" id="searchBox">
+        <div class="card pt-2 pb-4 border-0 rounded-0">
+            <div class="container">
+                <div class="input-group"><i class="ci-search position-absolute top-50 start-0 translate-middle-y ms-3"></i>
+                    <input (keydown.enter)="search(sear.value)" #sear class="form-control rounded-start" type="text" placeholder="Buscar Productos">
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

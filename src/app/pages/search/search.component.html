@@ -1,0 +1,90 @@
+<section class="ps-lg-4 pe-lg-3 pt-4">
+    <div class="px-3 pt-2">
+        <!-- Page title + breadcrumb-->
+        <nav class="mb-4" aria-label="breadcrumb">
+            <ol class="breadcrumb flex-lg-nowrap">
+                <li class="breadcrumb-item"><a class="text-nowrap" routerLink="/home"><i class="ci-home"></i>Inicio</a></li>
+                <li class="breadcrumb-item text-nowrap active" aria-current="page">Search </li>
+            </ol>
+        </nav>
+        <!-- Content-->
+        <!-- Sorting-->
+        <section class="d-md-flex justify-content-between align-items-center mb-4 pb-2">
+
+            <h1 class="h2 mb-3 mb-md-0 me-3">Resultados</h1>
+            <p class="mb-0">
+                <span> <b>Total:</b> {{ products.length }} </span>
+            </p>
+        </section>
+
+        <div *ngIf="products.length === 0">
+            <h4 class="display-3 text-center"> Sin Resultados... </h4>
+        </div>
+
+        <!-- Product grid-->
+        <div class="row g-0 mx-n2">
+            <!-- Product-->
+            <div class="col-xl-3 col-lg-6 col-md-4 col-sm-6 px-2 mb-3" *ngFor="let product of products">
+
+                <div class="card product-card card-static pb-0">
+                    <span *ngIf="product.inventory <= 0" class="badge bg-danger badge-shadow"> Agotado </span>
+                    <span *ngIf="product.offert" class="badge bg-danger badge-shadow"> {{ product.offertPercent }}% </span>
+                    <!-- <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist"><i class="ci-heart"></i></button> -->
+                    <a class="card-img-top d-block overflow-hidden d-flex justify-content-center" [routerLink]="['/producto', product.pid]">
+                        <img *ngIf="product.img.length > 0" class="" [src]="product.img[0].img | imagen " [alt]="product.name">
+                        <img *ngIf="product.img.length === 0" class="" [src]="'none' | imagen " [alt]="product.name">
+                    </a>
+                    <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1">{{ product.categoria.name }}</a>
+                        <h3 class="product-title fs-sm text-truncate">
+                            <a [routerLink]="['/producto', product.pid]">{{ product.name }}</a>
+                        </h3>
+
+                        <div class="product-price" *ngIf="!user">
+
+                            <p>No usuario</p>
+                            <span class="text-accent" >
+                                <span *ngIf="product.offert"> {{ product.offertPrice | currency:'COP': 'symbol': '1.0-0' }} </span>
+                                <span *ngIf="!product.offert"> {{ product.price | currency:'COP': 'symbol': '1.0-0' }} </span>
+                            </span>
+                            <del *ngIf="product.offert" class="fs-sm text-muted"> {{ product.price | currency:'COP': 'symbol': '1.0-0' }} </del>
+                        </div>
+    
+                        <div class="product-price" *ngIf="user">
+    
+                            <p>usuario</p>
+    
+                            <span class="text-accent" *ngIf="user.wholesale || user.vip">
+                                <span *ngIf="user.wholesale && !user.vip"> {{ product.wholesale | currency:'COP': 'symbol': '1.0-0' }} </span>
+                                <span *ngIf="user.vip"> {{ product.vip | currency:'COP': 'symbol': '1.0-0' }} </span>
+                            </span>
+    
+                            <span class="text-accent" *ngIf="!user.wholesale && !user.vip">
+                                <span *ngIf="product.offert"> {{ product.offertPrice | currency:'COP': 'symbol': '1.0-0' }} </span>
+                                <span *ngIf="!product.offert"> {{ product.price | currency:'COP': 'symbol': '1.0-0' }} </span>
+                            </span>
+                            <del *ngIf="user.wholesale || user.vip" class="fs-sm text-muted"> {{ product.price | currency:'COP': 'symbol': '1.0-0' }} </del>
+                        </div>
+
+                        <!-- <div class="product-price">
+                            <span class="text-accent">
+                                <span *ngIf="product.offert"> {{ product.offertPrice | currency:'COP': 'symbol': '1.0-0' }} </span>
+                            <span *ngIf="!product.offert"> {{ product.price | currency:'COP': 'symbol': '1.0-0' }} </span>
+                            </span>
+                            <del *ngIf="product.offert" class="fs-sm text-muted"> {{ product.price | currency:'COP': 'symbol': '1.0-0' }} </del>
+                        </div> -->
+                    </div>
+                    <button (click)="addProductCart(product, 1)" class="btn btn-primary btn-shadow btn-sm w-100" type="button">+<i class="ci-cart fs-base ms-1"></i></button>
+                    <!-- <div class="product-floating-btn">
+                        <button [disabled]="product.inventory <= 0" (click)="addProductCart(product, 1)" class="btn btn-primary btn-shadow btn-sm" type="button">+<i class="ci-cart fs-base ms-1"></i></button>
+                    </div> -->
+                </div>
+            </div>
+            <!-- Product-->
+
+        </div>
+        <div class="py-4 pb-md-5 mb-4">
+            <!-- BTN MORE -->
+            <button [disabled]="loadBtn" (click)="loadMore()" type="button" class="btn btn-sm btn-primary w-100"> Cargar mas... </button>
+        </div>
+    </div>
+</section>

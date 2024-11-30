@@ -1,0 +1,116 @@
+<!-- Page Title-->
+<div class="page-title-overlap bg-dark pt-4">
+    <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
+        <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center justify-content-lg-start">
+                    <li class="breadcrumb-item"><a class="text-nowrap" routerLink="/"><i class="ci-home"></i>Inicio</a></li>
+                    <li class="breadcrumb-item text-nowrap active" aria-current="page">mi carrito</li>
+                </ol>
+            </nav>
+
+        </div>
+        <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
+            <h1 class="h3 text-light mb-0">Mi carrito</h1>
+        </div>
+    </div>
+
+    <div class="container d-flex justify-content-end">
+        <a name="" id="" class="btn btn-outline-primary btn-sm" routerLink="/" role="button">Seguir Comprando</a>
+    </div>
+</div>
+<div class="container bg-white pb-5 mb-2 mb-md-4">
+    <div class="row">
+        <!-- List of items-->
+        <section class="col-lg-8">
+            <div class="d-flex justify-content-between align-items-center pt-3 pb-4 pb-sm-5 mt-1">
+                <h2 class="h6 text-light mb-0">Productos</h2>
+            </div>
+
+            <div *ngIf="carrito.items.length === 0" class="alert alert-accent" role="alert">
+                <h4 class="pt-2 alert-heading">Carrito Vacio!</h4>
+                <p>Aun no has agregado productos al carrito</p>
+                <hr>
+                <p class="pt-3 mb-2"> <a class="text-info" routerLink="/home">Volver al inicio</a> </p>
+            </div>
+
+            <!-- Item-->
+            <div class="d-sm-flex justify-content-between align-items-start my-2 pb-3 border-bottom" *ngFor="let item of carrito.items; let i = index">
+                <div class="d-block d-sm-flex align-items-center text-center text-sm-start">
+                    <a class="d-inline-block flex-shrink-0 mx-auto" [routerLink]="['/producto', item.product.pid]">
+                        <img [src]="item.product.img[0].img | imagen" width="160" alt="Product">
+                    </a>
+                    <div class="container pt-2">
+                        <h3 class="product-title fs-base mb-2">
+                            <a [routerLink]="['/producto', item.product.pid]"> {{ item.product.name }} </a></h3>
+                        <div class="fs-sm" style="max-width: 17rem;"><span class="text-muted">Descripción:</span> {{ item.product.description }} </div>
+                        <div class="fs-lg text-accent pt-2"> {{ item.price | currency:'COP':'symbol':'1.0-0' }} </div>
+                    </div>
+                </div>
+                <div class="pt-2 pt-sm-0 mx-auto mx-sm-0 text-center text-sm-start" style="max-width: 9rem;">
+                    <label class="form-label" for="quantity1">Cantidad</label>
+                    <div class="input-group input-group-sm">
+
+                        <button (click)="updateCant(item.product, -1)" type="button" class="btn btn-primary" id="button-addon-left">-</button>
+                        <input class="form-control" type="number" readonly id="quantity1" min="1" [value]="item.qty">
+                        <button (click)="updateCant(item.product, 1)" type="button" class="btn btn-dark" id="button-addon-right">+</button>
+                    </div>
+                    <button (click)="delItem(i)" class="btn btn-link px-0 text-danger" type="button"><i class="ci-close-circle me-2"></i><span class="fs-sm">Eliminar</span></button>
+                </div>
+            </div>
+
+        </section>
+        <!-- Sidebar-->
+        <aside class="col-lg-4 pt-4 pt-lg-0 ps-xl-5">
+            <div class="bg-white rounded-3 shadow-lg p-4">
+                <div class="py-2 px-xl-2">
+                    <div class="text-center mb-4 pb-3 border-bottom">
+
+                        <h2 *ngIf="carrito.total < mayS && carrito.items.length > 0" class="h6 mb-0 pb-1">Domicilio</h2>
+                        <h3 *ngIf="carrito.total < mayS && carrito.items.length > 0" class="h6"> {{ 5000 | currency:'COP':'symbol':'1.0-0' }} </h3>
+
+                        <h2 class="h6 mb-0 pb-1">Subtotal</h2>
+                        <h3 class="h6"> {{ carrito.total | currency:'COP':'symbol':'1.0-0' }} </h3>
+
+                        <h2 *ngIf="carrito.items.length > 0" class="h6 mb-0">Total</h2>
+                        <h3 *ngIf="carrito.total < mayS && carrito.items.length > 0" class="fw-normal"> {{ carrito.total + 5000 | currency:'COP':'symbol':'1.0-0' }} </h3>
+                        <h3 *ngIf="carrito.total > menS" class="fw-normal"> {{ carrito.total | currency:'COP':'symbol':'1.0-0' }} </h3>
+                        <p [ngClass]="{'d-none': empresa.name !== 'comercio llanero'}"  class="mb-0 text-break">Compras superiores a 100.000 domicilio gratis</p>
+                    </div>
+
+                    <div *ngIf="user" [ngClass]="{'d-none': empresa.name !== 'comercio llanero'}" class="mb-4 pb-3 border-bottom">
+                        <h2 class="h6 mb-0 text-center text-accent">Saldo</h2>
+                        <h3 class="text-center text-accent"> {{ user.walletBalance | currency: 'COP' }} </h3>
+                        <div class="form-check">
+                            <input class="form-check-input" #checkS (change)="checkS.checked = checkS.checked" type="checkbox" id="ex-check-1">
+                            <label class="form-check-label" for="ex-check-1">Usar Saldo</label>
+                        </div>
+
+                        <div *ngIf="checkS.checked" class="form-floating mb-3">
+                            <input class="form-control" (keyup)="changeSaldo(saldoI.value)" #saldoI type="number" id="fl-text" step="1" min="0" [value]="saldo" [max]="user.walletBalance" placeholder="Monto">
+                            <label for="fl-text">Monto</label>
+                        </div>
+
+                        <div *ngIf="checkS.checked" class="text-center">
+                            <h2 *ngIf="checkS.checked && (carrito.total - saldo) < mayS" class="h6 mb-0 pb-1">Domicilio</h2>
+                            <h3 *ngIf="checkS.checked && (carrito.total - saldo) < mayS" class="h6"> {{ 5000 | currency:'COP':'symbol':'1.0-0' }} </h3>
+
+                            <h2 *ngIf="checkS.checked" class="h3 mb-0 pb-1">Total</h2>
+                            <h3 *ngIf="checkS.checked && (carrito.total - saldo) < mayS" class="h6 fw-normal"> {{ ((carrito.total+5000) - saldo) | currency:'COP':'symbol':'1.0-0' }} </h3>
+                            <h3 *ngIf="checkS.checked && (carrito.total - saldo) > menS" class="h6 fw-normal"> {{ ((carrito.total) - saldo) | currency:'COP':'symbol':'1.0-0' }} </h3>
+                        </div>
+                    </div>
+
+
+
+                    <button [disabled]="carrito.items.length === 0 || sendP" (click)="createPedido()" type="button" class="btn btn-primary btn-shadow d-block w-100 mt-4">
+                        <i class="ci-card fs-lg me-2"></i>
+                        <span *ngIf="!sendP">Confirmar pedido</span>
+                        <span *ngIf="sendP">Creando Pedido</span>
+                        
+                    </button>
+                </div>
+            </div>
+        </aside>
+    </div>
+</div>

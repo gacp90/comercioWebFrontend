@@ -1,0 +1,73 @@
+<!-- Sidebar-->
+
+<div class="bg-white rounded-3 shadow-lg pt-1 mb-5 mb-lg-0">
+    <div class="d-md-flex justify-content-between align-items-center text-center text-md-start p-4">
+        <div class="d-md-flex flex-wrap align-items-center">
+
+            <div *ngIf="!user.activo">
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <span class="fw-bold">Atención:</span> no dejes de ganar comisiones el mes siguiente, realiza tu compra ya.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+
+            <div>
+                <div class="ps-md-3 mb-3">
+                    <p class="mb-0">Saldo</p>
+                    <h3 class="fs-4"> {{ user.walletBalance | currency: 'COP' }} </h3>
+                </div>
+
+                <div class="ps-md-3 mb-3">
+                    <h3 class="fs-base mb-0"> {{ user.name }} {{ user.lastname || '' }}</h3>
+                    <span class="text-accent fs-sm"> {{ user.email }} </span>
+                </div>
+            </div>
+
+            <div class="ps-md-3">
+                <h3 class="fs-base mb-0"> Codigo para referir:</h3>
+                <span (click)="copyToClipboard()" class="text-accent fs-sm pointer" data-bs-toggle="tooltip" data-bs-placement="top" title="Clic para copiar"> {{ user.referralCode }}  <i class="ci ci-clip"></i> </span>
+            </div>
+        </div>
+        <a class="btn btn-primary d-lg-none mb-2 mt-3 mt-md-0" href="#account-menu" data-bs-toggle="collapse" aria-expanded="false">
+            <i class="ci-menu me-2"></i>Menu de la cuenta
+        </a>
+    </div>
+
+    <div class="d-lg-block collapse" id="account-menu">
+        <div class="bg-secondary px-4 py-3">
+            <h3 class="fs-sm mb-0 text-muted">Dashboard</h3>
+        </div>
+        <ul class="list-unstyled mb-0">
+            <li class="border-bottom mb-0">
+                <a class="nav-link-style d-flex align-items-center px-4 py-3" routerLinkActive="active" routerLink="/dashboard/pedidos">
+                    <i class="ci-bag opacity-60 me-2"></i>Mis Pedidos
+                </a>
+            </li>
+            <li class="border-bottom mb-0">
+                <a class="nav-link-style d-flex align-items-center px-4 py-3" routerLinkActive="active" routerLink="/dashboard/niveles">
+                    <i class="ci-server-alt opacity-60 me-2"></i>Mis Niveles
+                </a>
+            </li>
+        </ul>
+        <div class="bg-secondary px-4 py-3">
+            <h3 class="fs-sm mb-0 text-muted">Cuenta</h3>
+        </div>
+        <ul class="list-unstyled mb-0">
+            <li class="border-bottom mb-0">
+                <a class="nav-link-style d-flex align-items-center px-4 py-3" routerLinkActive="active" routerLink="/dashboard/perfil">
+                    <i class="ci-user opacity-60 me-2"></i>Perfil
+                </a>
+            </li>
+            <li class="border-bottom mb-0">
+                <a class="nav-link-style d-flex align-items-center px-4 py-3" routerLinkActive="active" routerLink="/dashboard/password">
+                    <i class="ci-locked opacity-60 me-2"></i>Seguridad
+                </a>
+            </li>
+            <li class="d-lg-none border-top mb-0">
+                <a class="nav-link-style d-flex align-items-center px-4 py-3" (click)="logout()">
+                    <i class="ci-sign-out opacity-60 me-2"></i>Salir
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

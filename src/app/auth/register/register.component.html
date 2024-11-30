@@ -1,0 +1,109 @@
+<main style="padding-top: 5rem;">
+    <section>
+        <div class="container py-4 py-lg-5 my-4">
+            <h2 class="h4 mb-3">No tengo cuenta? Registrarme</h2>
+            <p class="fs-sm text-muted mb-4">El registro lleva menos de un minuto pero le brinda control total sobre sus pedidos.</p>
+
+            <form class="needs-validation" novalidate="" autocomplete="off" [formGroup]="newForm" (ngSubmit)="register()">
+
+                <div class="row gx-4 gy-3">
+
+                    <div class="col-sm-6">
+                        <label class="form-label" for="reg-fn">Nombres</label>
+                        <input formControlName="name" class="form-control" type="text" [required]="validate('name')" id="reg-fn" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                        <div *ngIf="validate('name')" class="invalid-feedback">Los nombres son obligatorios</div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label class="form-label" for="apellidos">Apellidos</label>
+                        <input formControlName="lastname" class="form-control" type="text" [required]="validate('lastname')" id="apellidos" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                        <div *ngIf="validate('lastname')" class="invalid-feedback">Los apellidos son obligatorios</div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label class="form-label" for="cedula">Cedula</label>
+                        <input formControlName="cedula" class="form-control" type="text" [required]="validate('cedula')" id="cedula" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                        <div *ngIf="validate('cedula')" class="invalid-feedback">La cedula es obligatoria</div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label class="form-label" for="reg-email">email</label>
+                        <input formControlName="email" class="form-control" type="email" [required]="validate('phone')" id="reg-email" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                        <div *ngIf="validate('email')" class="invalid-feedback">El correo es obligatorio</div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label class="form-label" for="reg-phone">Telefono</label>
+                        <input formControlName="phone" class="form-control" type="text" [required]="validate('phone')" id="reg-phone" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                        <div *ngIf="validate('phone')" class="invalid-feedback">El numero telefonico es obligatorio!</div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label class="form-label" for="reg-address">Dirección</label>
+                        <input formControlName="address" class="form-control" type="text" [required]="validate('address')" id="reg-address" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                        <div *ngIf="validate('address')" class="invalid-feedback">La dirección es obligatoria!</div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-label" for="reg-city">Ciudad</label>
+                        <input formControlName="city" class="form-control" type="text" [required]="validate('city')" id="reg-city" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                        <div *ngIf="validate('city')" class="invalid-feedback">La ciudad es obligatoria!</div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-label" for="reg-department">Departamento</label>
+                        <input formControlName="department" class="form-control" type="text" [required]="validate('department')" id="reg-department" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                        <div *ngIf="validate('department')" class="invalid-feedback">El departamento es obligatorio!</div>
+                    </div>
+
+                    <div class="col-sm-6">
+
+                        <div class="input-group">
+                            <label class="form-label" for="reg-password">Contraseña</label>
+                            <div class="password-toggle w-100">
+                                <input formControlName="password" class="form-control" [type]="pass.checked ? 'text':'password'" placeholder="Contraseña" required="" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                                <label class="password-toggle-btn" aria-label="Show/hide password">
+                                    <input class="password-toggle-check" type="checkbox" (change)="pass.checked"  #pass><span class="password-toggle-indicator"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div *ngIf="validate('password')" class="invalid-feedback">Contraseña es obligatoria</div>
+
+
+                    </div>
+
+                    <div class="col-sm-6">
+
+                        <div class="input-group">
+                            <label class="form-label" for="reg-password">Confirmar Contraseña</label>
+                            <div class="password-toggle w-100">
+                                <input formControlName="repassword" class="form-control" [type]="repass.checked ? 'text':'password'" placeholder="Contraseña" required="" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                                <label class="password-toggle-btn" aria-label="Show/hide password">
+                                    <input class="password-toggle-check" type="checkbox" (change)="repass.checked"  #repass><span class="password-toggle-indicator"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div *ngIf="validate('repassword')" class="invalid-feedback">Debes de confirmar la contraseña</div>
+                        <div *ngIf="pass.value !== repass.value" class="text-danger">
+                            <small>
+                                Las contraseñas deben ser iguales
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input formControlName="termns" class="form-check-input" type="checkbox" id="invalidCheck" [required]="validate('termns')">
+                            <label class="form-check-label" for="invalidCheck">Acepto los <a href="https://comerciollanero.com/policy">terminos</a>  y  <a href="https://comerciollanero.com/policy">politicas de privacidad</a></label>
+                            <div class="invalid-feedback">Debes de aceptar los terminos y politicas de privacidad</div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-wrap justify-content-between">
+                        <a class="nav-link-inline fs-sm pointer" routerLink="/login">Ya tengo cuenta</a>
+                        <button class="btn btn-primary" type="submit"><i class="ci-user me-2 ms-n1"></i>Registrarme</button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </section>
+</main>

@@ -1,0 +1,112 @@
+<section class="mt-2">
+    <!-- Toolbar-->
+    <!-- <div class="d-flex justify-content-between align-items-center pt-lg-2 pb-4 pb-lg-5 mb-lg-3">
+        <div class="d-flex align-items-center">
+            <label class="d-none d-lg-block fs-sm text-nowrap opacity-75 me-2" for="order-sort">Estado:</label>
+            <label class="d-lg-none fs-sm text-nowrap opacity-75 me-2" for="order-sort">Estado:</label>
+            <select class="form-select" id="order-sort">
+                <option value="Todos">Todos</option>
+                <option value="Pendiente" >Pendiente</option>
+                <option value="Procesando" >Procesando</option>
+                <option value="Entregado" >Entregado</option>
+                <option value="Cancelado" >Cancelado</option>
+            </select>
+        </div>
+    </div> -->
+    <!-- Orders list-->
+    <div class="table-responsive fs-md mb-4">
+        <table class="table table-hover mb-0">
+            <thead>
+                <tr>
+                    <th>Pedido #</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="pedidos.length === 0">
+                    <td class="text-center" colspan="4"> No tienes registro de pedidos...</td>
+                </tr>
+                <tr *ngFor="let pedido of pedidos">
+                    <td class="py-3">
+                        <a (click)="pedidoS = pedido" class="nav-link-style fw-medium fs-sm" href="#order-details" data-bs-toggle="modal">
+                            00-{{ pedido.pedido }}
+                        </a>
+                    </td>
+                    <td class="py-3"> {{ pedido.fecha | date:'short' }} </td>
+                    <td class="py-3">
+                        <span class="badge m-0" [ngClass]="{'bg-warning': pedido.estado === 'Pendiente', 
+                                    'bg-danger': pedido.estado === 'Cancelado',
+                                    'bg-info': pedido.estado === 'Procesando',
+                                    'bg-dark': pedido.estado === 'Enviando',
+                                    'bg-success': pedido.estado === 'Entregado',}"> {{ pedido.estado }} </span>
+                    </td>
+                    <td class="py-3"> {{ pedido.amount | currency:'COP': 'symbol': '1.0-0' }} </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- Pagination-->
+    <div>
+        <button type="button" class="btn btn-primary w-100">Cargar mas...</button>
+    </div>
+</section>
+
+<div class="modal fade" id="order-details" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content" *ngIf="pedidoS">
+            <div class="modal-header">
+                <h5 class="modal-title">Pedido #00-{{pedidoS.pedido}} <span class="badge" [ngClass]="{'bg-warning': pedidoS.estado === 'Pendiente', 
+                    'bg-danger': pedidoS.estado === 'Cancelado',
+                    'bg-info': pedidoS.estado === 'Procesando',
+                    'bg-success': pedidoS.estado === 'Entregado',}"> {{ pedidoS.estado }} </span> </h5>
+                <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body pb-0">
+                <!-- Item-->
+                <div class="d-sm-flex justify-content-between mb-4 pb-3 pb-sm-2 border-bottom" *ngFor="let item of pedidoS.items">
+                    <div class="d-sm-flex text-center text-sm-start">
+                        <a class="d-inline-block flex-shrink-0 mx-auto" routerLink="/producto/{{item.product._id}}" style="width: 10rem;">
+                            <img [src]=" item.product.img[0].img | imagen " alt="Product">
+                        </a>
+                        <div class="ps-sm-4 pt-2">
+                            <h3 class="product-title fs-base mb-2"><a routerLink="/producto/{{item.product._id}}"> {{ item.product.name }} </a></h3>
+                            <div class="fs-sm"><span class="text-muted me-2">Descripción:</span> {{ item.product.description }} </div>
+                            <div class="fs-lg text-accent pt-2"> {{ item.price | currency:'COP': 'symbol': '1.0-0' }} </div>
+                        </div>
+                    </div>
+                    <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
+                        <div class="text-muted mb-2">Cant:</div> {{ item.quantity }}
+                    </div>
+                    <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
+                        <div class="text-muted mb-2">Monto</div> {{ (item.price * item.quantity) | currency:'COP': 'symbol': '1.0-0' }}
+                    </div>
+                </div>
+                <!-- Item-->
+
+            </div>
+            <!-- Footer-->
+            <div class="modal-footer flex-wrap justify-content-between bg-secondary fs-md">
+                <!-- <div class="px-2 py-1"><span class="text-muted">Subtotal:&nbsp;</span><span>$265.<small>00</small></span></div>
+                <div class="px-2 py-1"><span class="text-muted">Shipping:&nbsp;</span><span>$22.<small>50</small></span></div>
+                <div class="px-2 py-1"><span class="text-muted">Tax:&nbsp;</span><span>$9.<small>50</small></span></div> -->
+                <div *ngIf="pedidoS.amount < 100000 || pedidoS.saldo !== 0 && (pedidoS.amount - pedidoS.saldo) < 100000" class="px-2 py-1">
+                    <span class="text-muted">Domicilio:&nbsp;</span>
+                    <span class="fs-lg"> {{ 5000 | currency:'COP': 'symbol': '1.0-0'  }} </span>
+                </div>
+
+                <div class="px-2 py-1">
+                    <span class="text-muted">Sub-Total:&nbsp;</span>
+                    <span class="fs-lg"> {{ pedidoS.amount | currency:'COP': 'symbol': '1.0-0'  }} </span>
+                </div>
+
+                <div class="px-2 py-1">
+                    <span class="text-muted">Total:&nbsp;</span>
+                    <span class="fs-lg" *ngIf="pedidoS.saldo === 0"> {{ pedidoS.amount | currency:'COP': 'symbol': '1.0-0'  }} </span>
+                    <span class="fs-lg" *ngIf="pedidoS.amount < 100000 || pedidoS.saldo !== 0 && (pedidoS.amount - pedidoS.saldo) < 100000"> {{ pedidoS.amount + 5000 | currency:'COP': 'symbol': '1.0-0'  }} </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

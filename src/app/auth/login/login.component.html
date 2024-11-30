@@ -1,0 +1,91 @@
+<main style="padding-top: 5rem;">
+    <section>
+        <div class="container py-4 py-lg-5 my-4">
+            <div class="card border-0 shadow">
+                <div class="card-body">
+                    <h2 class="h4 mb-1">Iniciar Sesion</h2>
+                    <!-- <div class="py-3">
+                <h3 class="d-inline-block align-middle fs-base fw-medium mb-2 me-2">With social account:</h3>
+                <div class="d-inline-block align-middle"><a class="btn-social bs-google me-2 mb-2" href="#" data-bs-toggle="tooltip" aria-label="Sign in with Google" data-bs-original-title="Sign in with Google"><i class="ci-google"></i></a><a class="btn-social bs-facebook me-2 mb-2" href="#" data-bs-toggle="tooltip" aria-label="Sign in with Facebook" data-bs-original-title="Sign in with Facebook"><i class="ci-facebook"></i></a><a class="btn-social bs-twitter me-2 mb-2" href="#" data-bs-toggle="tooltip" aria-label="Sign in with Twitter" data-bs-original-title="Sign in with Twitter"><i class="ci-twitter"></i></a></div>
+            </div> -->
+                    <hr>
+                    <!-- <h3 class="fs-base pt-4 pb-2">Or using form below</h3> -->
+                    <form class="needs-validation" novalidate="" autocomplete="off" [formGroup]="loginForm" (ngSubmit)="login()">
+
+                        <div class="input-group mb-3">
+                            <i class="ci-mail position-absolute top-50 translate-middle-y text-muted fs-base ms-3"></i>
+                            <input formControlName="email" class="form-control rounded-start" type="email" placeholder="Email" required="" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <i class="ci-locked position-absolute top-50 translate-middle-y text-muted fs-base ms-3"></i>
+                            <div class="password-toggle w-100">
+                                <input formControlName="password" class="form-control" [type]="pass.checked ? 'text':'password'" placeholder="Contraseña" required="" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                                <label class="password-toggle-btn" aria-label="Show/hide password">
+                                    <input class="password-toggle-check" type="checkbox" (change)="pass.checked"  #pass><span class="password-toggle-indicator"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-wrap justify-content-between">
+                            <div class="form-check">
+                                <input formControlName="remember" class="form-check-input" type="checkbox" checked="" id="remember_me">
+                                <label class="form-check-label" for="remember_me">Recuerdame</label>
+                            </div>
+                            <a class="nav-link-inline fs-sm pointer" data-bs-toggle="modal" data-bs-target="#recuperarcontraseña">Olvide mi contraseña?</a>
+                        </div>
+                        <hr class="mt-4">
+                        <div class="d-flex flex-wrap justify-content-between pt-4">
+
+                            <a class="nav-link-inline fs-sm pointer" routerLink="/registrarme">Registrarme</a>
+
+                            <button class="btn btn-primary" [disabled]="btnLogin" type="submit">
+                                <i class="ci-sign-in me-2 ms-n21"></i>
+                                <span *ngIf="!btnLogin">Ingresar</span>
+                                <span *ngIf="btnLogin">Ingresando...</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- RECUPERAR CONTRASEÑA -->
+<div class="modal fade" id="recuperarcontraseña" tabindex="-1" aria-labelledby="recuperarcontraseñaLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="recuperar contraseñaLabel">Recuperar Contraseña</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form autocomplete="off" [formGroup]="formPassRee" (ngSubmit)="rePass()">
+
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Email</label>
+                        <input formControlName="email" type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                        <small *ngIf="validatePass('email')" class="text-danger">El email es obligatorio</small>
+                    </div>
+
+                    <button type="submit" [disabled]="btnFormPass" class="btn btn-primary mb-3">
+                        <span *ngIf="!btnFormPass">
+                            Recuperar                            
+                        </span>
+                        <span *ngIf="btnFormPass">
+                            Enviando...
+                        </span>
+
+                    </button>
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- RECUPERAR CONTRASEÑA -->
