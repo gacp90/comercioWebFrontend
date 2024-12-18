@@ -48,13 +48,23 @@
                     </div>
                 </div>
                 <div class="pt-2 pt-sm-0 mx-auto mx-sm-0 text-center text-sm-start" style="max-width: 9rem;">
+
+                    <!-- CANTIDAD -->
                     <label class="form-label" for="quantity1">Cantidad</label>
-                    <div class="input-group input-group-sm">
+                    <div class="input-group input-group-sm mb-2">
 
                         <button (click)="updateCant(item.product, -1)" type="button" class="btn btn-primary" id="button-addon-left">-</button>
                         <input class="form-control" type="number" readonly id="quantity1" min="1" [value]="item.qty">
                         <button (click)="updateCant(item.product, 1)" type="button" class="btn btn-dark" id="button-addon-right">+</button>
                     </div>
+
+                    <!-- TALLAS COLOR -->
+                    <label *ngIf="user" class="form-label" for="detailsInput">Talla, color, etc.</label>
+                    <div *ngIf="user" class="input-group input-group-sm">                        
+                        <input class="form-control" type="text" id="detailsInput" (change)="addDetails(detailsInput.value, i)" #detailsInput placeholder="Talla, color, etc...">                        
+                    </div>
+
+                    <!-- BTN ELIMINAR PRODUCTO -->
                     <button (click)="delItem(i)" class="btn btn-link px-0 text-danger" type="button"><i class="ci-close-circle me-2"></i><span class="fs-sm">Eliminar</span></button>
                 </div>
             </div>
@@ -78,7 +88,7 @@
                         <p [ngClass]="{'d-none': empresa.name !== 'comercio llanero'}"  class="mb-0 text-break">Compras superiores a 100.000 domicilio gratis</p>
                     </div>
 
-                    <div *ngIf="user" [ngClass]="{'d-none': empresa.name !== 'comercio llanero'}" class="mb-4 pb-3 border-bottom">
+                    <div *ngIf="user" class="mb-4 pb-3 border-bottom">
                         <h2 class="h6 mb-0 text-center text-accent">Saldo</h2>
                         <h3 class="text-center text-accent"> {{ user.walletBalance | currency: 'COP' }} </h3>
                         <div class="form-check">

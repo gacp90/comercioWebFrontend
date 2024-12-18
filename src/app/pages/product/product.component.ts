@@ -38,6 +38,20 @@ export class ProductComponent implements OnInit {
   }
 
   /** ================================================================
+   *  SCROLL
+  ==================================================================== */
+  scrollTop(){
+    let scrollToTop = window.setInterval(() => {
+        let pos = window.pageYOffset;
+        if (pos > 0) {
+            window.scrollTo(0, pos - 50); // how far to scroll on each step
+        } else {
+            window.clearInterval(scrollToTop);
+        }
+    }, 16);
+  }
+
+  /** ================================================================
    *  LOAD PRODUCT ID
   ==================================================================== */
   public portada!: string;
@@ -56,7 +70,8 @@ export class ProductComponent implements OnInit {
 
           this.product = product;    
           
-          this.stock = Array(product.inventory).fill(1).map((x,i)=>i);    
+          this.stock = Array(product.inventory).fill(1).map((x,i)=>i);  
+          this.scrollTop();  
 
         }, (err) => {
           console.log(err);

@@ -1,5 +1,5 @@
 <!-- Footer-->
-<a href="tel:{{empresa.phone}}" target="_blank" class="btn-flotante2 btn btn-dark rounded-pill btn-icon">
+<a *ngIf="empresa.phone !== 'none'" href="tel:{{empresa.phone}}" target="_blank" class="btn-flotante2 btn btn-dark rounded-pill btn-icon">
     <i class="ci-phone"></i>
 </a>
 <a [href]="empresa.whatsapp" target="_blank" class="btn-flotante btn btn-success rounded-pill btn-icon p-1">

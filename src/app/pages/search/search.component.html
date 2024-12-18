@@ -34,7 +34,7 @@
                         <img *ngIf="product.img.length > 0" class="" [src]="product.img[0].img | imagen " [alt]="product.name">
                         <img *ngIf="product.img.length === 0" class="" [src]="'none' | imagen " [alt]="product.name">
                     </a>
-                    <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1">{{ product.categoria.name }}</a>
+                    <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1">{{ product.categoria?.name! || 'Sin Categoria' }}</a>
                         <h3 class="product-title fs-sm text-truncate">
                             <a [routerLink]="['/producto', product.pid]">{{ product.name }}</a>
                         </h3>
@@ -52,10 +52,11 @@
                         <div class="product-price" *ngIf="user">
     
                             <p>usuario</p>
-    
+                            
                             <span class="text-accent" *ngIf="user.wholesale || user.vip">
-                                <span *ngIf="user.wholesale && !user.vip"> {{ product.wholesale | currency:'COP': 'symbol': '1.0-0' }} </span>
+                                <span *ngIf="user.vip" class="bg-danger text-white px-2 py-1"> Precio VIP </span>
                                 <span *ngIf="user.vip"> {{ product.vip | currency:'COP': 'symbol': '1.0-0' }} </span>
+                                <span *ngIf="user.wholesale && !user.vip"> {{ product.wholesale | currency:'COP': 'symbol': '1.0-0' }} </span>
                             </span>
     
                             <span class="text-accent" *ngIf="!user.wholesale && !user.vip">

@@ -9,6 +9,7 @@ import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
 import { environment } from '../../../environments/environment';
+import { _item } from 'src/app/interfaces/carrito.interface';
 
 interface _carrito{
   items: any[],
@@ -147,6 +148,40 @@ export class CarritoComponent implements OnInit {
   }
 
   /** ================================================================
+   *  AGREGAR DETALLES
+  ==================================================================== */
+  addDetails(details: string, i: any){
+
+    this.carrito.items[i].details = details;
+
+    let its: any[] = [];
+    for (const item of this.carrito.items) {
+      its.push({
+        product: item.product.pid,
+        qty: item.qty,
+        details: item.details || '',
+        price: item.price
+      });
+    }
+
+    let cart = {
+      items: its,
+      total: this.carrito.total
+    }
+
+    this.userService.updateUser({carrito: cart}, this.user._id!)
+        .subscribe( ({client}) => {
+
+          this.loadItems();
+
+        }, (err) => {
+          console.log(err);
+          Swal.fire('Error', err.error.msg, 'error');          
+        })
+
+  }
+
+  /** ================================================================
    *  CREATE PEDIDO
   ==================================================================== */
   @ViewChild('checkS') checkS!: ElementRef;
@@ -188,7 +223,7 @@ export class CarritoComponent implements OnInit {
         quantity: item.qty,
         price: item.price,
         cost: item.product.cost,
-        description: item.product.name,
+        description: `${item.product.name} | details: ${item.details}`,
         product: item.product.pid,
         taxes: item.product.taxes
       })

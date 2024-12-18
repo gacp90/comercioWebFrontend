@@ -3,12 +3,16 @@ import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
+import { environment } from '../../../../environments/environment';
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
+
+  public url = environment.local_url;
 
   public user!: User;
   constructor(  private userService: UserService){
@@ -30,7 +34,7 @@ export class SidebarComponent {
 
   copyToClipboard() {
     document.addEventListener('copy', (e: ClipboardEvent) => {
-      e.clipboardData!.setData('text/plain', (`https://comerciollanero.com/registrarme?referCode=${this.user.referralCode}`));
+      e.clipboardData!.setData('text/plain', (`${this.url}/registrarme?referCode=${this.user.referralCode}`));
       e.preventDefault();
       document.removeEventListener('copy', null!);
     });

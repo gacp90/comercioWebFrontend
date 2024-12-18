@@ -86,8 +86,7 @@ export class ProductsSliderComponent implements OnInit {
 
     this.productsService.loadProducts(query)
         .subscribe( ({products}) => {
-          this.products = products;   
-
+          this.products = products;
         }, (err) => {
           console.log(err);
           Swal.fire('Error', err.error.msg, 'error');          

@@ -31,7 +31,7 @@
         </div>
     </div>
     <div class="offcanvas-footer d-block px-grid-gutter pt-4 pb-4 mb-2">
-        <div class="d-flex mb-3"><i class="ci-support h4 mb-0 fw-normal text-primary mt-1 me-1"></i>
+        <div *ngIf="empresa.phone !== 'none'" class="d-flex mb-3"><i class="ci-support h4 mb-0 fw-normal text-primary mt-1 me-1"></i>
             <div class="ps-2">
                 <div class="text-muted fs-sm">Soporte</div><a class="nav-link-style fs-md" href="tel:{{empresa.phone}}">{{empresa.phone}}</a>
             </div>

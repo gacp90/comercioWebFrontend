@@ -36,7 +36,7 @@
             <div class="col-xl-5 px-2 mb-3">
                 <div class="h-100 bg-light rounded-3 py-5 px-4 px-sm-5">
                     <h4 *ngIf="product.inventory < 1" class="mb-0 text-danger">Agotado</h4>
-                    <a class="product-meta d-block fs-sm pb-2"> {{  product.categoria.name }} </a>
+                    <a class="product-meta d-block fs-sm pb-2"> {{  product.categoria?.name! || 'Sin Categoria' }} </a>
                     <h1 class="h2"> {{ product.name }} <span *ngIf="product.offert" class="badge bg-danger badge-shadow"> {{ product.offertPercent }}% </span></h1>
                     
                     
@@ -55,8 +55,10 @@
                         <del *ngIf="user.wholesale || user.vip"> {{ product.price | currency: 'COP':'symbol':'1.0-0' }} </del>
                         
                         <div class="h2 fw-normal text-accent" *ngIf="user.wholesale || user.vip">
-                            <span *ngIf="user.wholesale && !user.vip"> {{ product.wholesale | currency:'COP': 'symbol': '1.0-0' }} </span>
+                            <span *ngIf="user.vip" class="bg-danger text-white px-2 py-1"> Precio VIP </span>
+                            <br *ngIf="user.vip">
                             <span *ngIf="user.vip"> {{ product.vip | currency:'COP': 'symbol': '1.0-0' }} </span>
+                            <span *ngIf="user.wholesale && !user.vip"> {{ product.wholesale | currency:'COP': 'symbol': '1.0-0' }} </span>
                         </div>
 
                         <div class="h2 fw-normal text-accent" *ngIf="!user.wholesale && !user.vip">

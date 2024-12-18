@@ -46,8 +46,6 @@ export class LoginComponent {
     
     this.authService.login(this.loginForm.value)
     .subscribe( resp => {  
-          
-          console.log(resp);
             
           if (resp === false) {
             this.btnLogin = false;

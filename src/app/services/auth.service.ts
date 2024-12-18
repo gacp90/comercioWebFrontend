@@ -146,7 +146,7 @@ export class AuthService {
 
         const { name, lastname, cedula, phone, email, address, city, department, referralCode, referredBy, walletBalance, status, cid, fecha, carrito, activo, codearea, vip, wholesale} = resp.usuario;
 
-        this.userService.user = new User( name, lastname, cedula, phone, email, '***', address, city, department, 'party_type', referralCode, referredBy, walletBalance, status, fecha, codearea, activo, vip, wholesale, carrito, cid, cid );
+        this.userService.user = new User( name, lastname, cedula, phone, email, '***', address, city, department, 'party_type', referralCode, referredBy, walletBalance, status, fecha, codearea, activo, wholesale, vip,  carrito, cid, cid );
 
         localStorage.setItem('token', resp.token);
         this.carritoService.isLogin = true;

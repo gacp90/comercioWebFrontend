@@ -72,6 +72,7 @@ export class CarritoService {
       for (const item of this.cart.items) {
         its.push({
           product: item.product.pid,
+          details: item.details || '',
           qty: item.qty,
           price: item.price
         });

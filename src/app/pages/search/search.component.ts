@@ -71,6 +71,20 @@ export class SearchComponent {
   }
 
   /** ================================================================
+   *  SCROLL
+  ==================================================================== */
+  scrollTop(){
+    let scrollToTop = window.setInterval(() => {
+        let pos = window.pageYOffset;
+        if (pos > 0) {
+            window.scrollTo(0, pos - 50); // how far to scroll on each step
+        } else {
+            window.clearInterval(scrollToTop);
+        }
+    }, 16);
+  }
+
+  /** ================================================================
    *   SEARCH
   ==================================================================== */
   public products: Product[] = [];
@@ -82,6 +96,7 @@ export class SearchComponent {
     this.searchService.search(tipo, termino,`desde=${this.desde}&hasta=${this.hasta}&web=si`)
         .subscribe( ({resultados}) => {
           this.products = resultados;
+          this.scrollTop();
         }, (err) =>{
           console.log(err);
           Swal.fire('Error', err.error.msg, 'error');          
@@ -98,6 +113,7 @@ export class SearchComponent {
     this.productsService.loadProducts({categoria, status: true, desde: this.desde, hasta: this.hasta })
         .subscribe( ({products}) => {
           this.products = products;
+          this.scrollTop();
         }, (err) => {
           console.log(err);
           Swal.fire('Error', err.error.msg);          
