@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 
 import { environment } from '../../../environments/environment';
 import { _item } from 'src/app/interfaces/carrito.interface';
+import { EmpresaService } from 'src/app/services/empresa.service';
 
 interface _carrito{
   items: any[],
@@ -23,13 +24,14 @@ interface _carrito{
 })
 export class CarritoComponent implements OnInit {
 
-  public empresa:any = environment.empresa;
+  public empresa:any;
 
   public carrito!: _carrito;
 
   constructor(  private carritoService: CarritoService,
                 private pedidosService: PedidosService,
                 private productsService: ProductsService,
+                private empresaService: EmpresaService,
                 private userService: UserService){
     this.carrito = carritoService.cart;    
   }
@@ -40,6 +42,11 @@ export class CarritoComponent implements OnInit {
   public mayS: number = 0;
 
   ngOnInit(): void {
+
+    this.empresaService.loadEmpresa()
+        .subscribe( ({empresa}) => {
+          this.empresa = empresa;
+        })
       
     // LOAD USER
     if (localStorage.getItem('token') !== null) {
