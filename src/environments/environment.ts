@@ -7,68 +7,27 @@
   base_url: 'https://admin.comerciollanero.com/api',
   local_url: 'https://comerciollanero.com'
 
+  base_url: 'https://admin.discoverysystemspos.com/api',
+  local_url: 'https://discoverysystemspos.com',
+
   base_url: 'https://admin.shopybrands.com/api',
   local_url: 'https://shopybrands.com'
+
+  base_url: 'https://demo.shopybrands.com/api',
+  local_url: 'https://tienda.shopybrands.com'
 
   base_url: 'http://localhost:3000/api',
   local_url: 'http://localhost:4200'
 
-  // ELKIN
-  empresa: {
-    name:'shopybrands.com',
-    address:'Bogota - Colombia',
-    nit:'000000000',
-    email: 'elkindanielcastillo@gmail.com',
-    phone: '+573155962626',
-    facebook: 'https://www.facebook.com/shopybrands',
-    instagram: 'https://www.instagram.com/shopybrands',
-    tiktok: 'none',
-    whatsapp: 'whatsapp://send?text=hola,+me+interesa+tus+productos&phone=+573155962626',
-    logo: 'logo-shopy.webp',
-    logob: 'logo-shopy-blanco.webp',
-    ico: 'logo-shopy.webp',
-    sizeico: '150'
-
-  }
-
-  // COMERCIO
-  empresa: {
-    name:'comercio llanero',
-    address:'Yopal, Carrera 14A Nro #25-25 - Colombia',
-    nit:'80.721.272',
-    email: 'soporte@comerciollanero.com',
-    phone: '+573044419848',
-    facebook: 'https://www.facebook.com/comerciollanerocol',
-    instagram: 'https://www.instagram.com/comerciollanero',
-    tiktok: 'https://www.tiktok.com/@comercio_llanero',
-    whatsapp: 'whatsapp://send?text=hola,+quiero+mas+informacion&phone=+573044419848',
-    logo: 'logo.webp',
-    logob: 'logo.webp',
-    ico: 'ico.webp',
-    sizeico: '60'
-  }
+  base_url: 'https://adminmc.drawve.com/api',
+  local_url: 'https://mc.drawve.com'
 
 */
 
 export const environment = {
   production: false,
-  base_url: 'https://admin.shopybrands.com/api',
-  local_url: 'https://shopybrands.com',
-  empresa: {
-    name:'shopybrands.com',
-    address:'Bogota - Colombia',
-    nit:'000000000',
-    email: 'info@shopybrands.com',
-    phone: 'none',
-    facebook: 'https://www.facebook.com/shopybrands',
-    instagram: 'https://www.instagram.com/shopybrands',
-    tiktok: 'none',
-    whatsapp: 'whatsapp://send?text=hola,+me+interesa+tus+productos&phone=+573171757268',
-    logo: 'logo-shopy.webp',
-    logob: 'logo-shopy-blanco.webp',
-    ico: 'logo-shopy.webp',
-    sizeico: '150'
-  }
+  base_url: 'http://localhost:3000/api',
+  local_url: 'http://localhost:4200'
 };
 
 /*

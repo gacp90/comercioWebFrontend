@@ -1,5 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/swiper/swiper-bundle.css";
+:root {
+    --header-background: #ffffff;
+    --header-text-color: #2d2d2d;
+    --footer-background: #2d2d2d;
+    --footer-text-color: #ffffff;
+}
+
+.header {
+  background-color: var(--header-background);
+  color: var(--header-text-color);
+}
+  
+.footer {
+  background-color: var(--footer-background) !important;
+  color: var(--footer-text-color) !important;
+}
 
 .pointer{
     cursor: pointer;

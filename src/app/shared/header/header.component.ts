@@ -11,6 +11,8 @@ import { UserService } from 'src/app/services/user.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 import { environment } from '../../../environments/environment';
+import { EmpresaService } from 'src/app/services/empresa.service';
+import { Empresa } from 'src/app/models/configuracion.model';
 
 interface _carrito{
   items: any[],
@@ -31,16 +33,19 @@ export class HeaderComponent implements OnInit {
 
   isLoggedIn = false;
 
-  public empresa:any = environment.empresa;
+  public empresa!: Empresa;
 
   constructor(  private carritoService: CarritoService,
                 private router: Router,
                 private userService: UserService,
                 private authService: AuthService,
-                private cd: ChangeDetectorRef  ){      
+                private cd: ChangeDetectorRef,
+                private empresaService: EmpresaService  ){      
       
       this.carrito = carritoService.cart;
       this.user = userService.user;
+      
+      
       
       
   }
@@ -49,6 +54,12 @@ export class HeaderComponent implements OnInit {
 
     // LOAD WORKER
     this.cargarUser();
+
+    this.empresaService.loadEmpresa()
+        .subscribe( ({empresa}) => {
+          this.empresa = empresa;
+        })
+    
 
     this.carritoService.getCartLocal();
 

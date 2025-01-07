@@ -1,11 +1,11 @@
 <!-- Navbar-->
-<header class="bg-light shadow-sm fixed-top" data-fixed-element>
+<header  class="header shadow-sm fixed-top" data-fixed-element>
     <div class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
-            <a class="navbar-brand d-none d-sm-block me-3 me-xl-4 flex-shrink-0" routerLink="/home">
-                <img src="../../../assets/img/{{empresa.logo}}" width="142" alt="comercio llanero"></a>
-            <a class="navbar-brand d-sm-none me-2" routerLink="/home">
-                <img src="../../../assets/img/{{empresa.ico}}" [width]="empresa.sizeico" alt="comercio llanero">
+            <a *ngIf="empresa" class="navbar-brand d-none d-sm-block me-3 me-xl-4 flex-shrink-0" routerLink="/home">
+                <img [src]="empresa.logo | imagen: 'logo'" width="180" [alt]="empresa.name"></a>
+            <a *ngIf="empresa" class="navbar-brand d-sm-none me-2" routerLink="/home">
+                <img [src]="empresa.ico | imagen: 'logo'" [width]="empresa.sizeico" [alt]="empresa.name">
             </a>
             <!-- Search-->
             <div class="input-group d-none d-lg-flex flex-nowrap mx-4">
@@ -25,20 +25,20 @@
                     </div>
                 </a>
 
-                <a class="navbar-tool d-none d-lg-flex" href="#">
+                <!-- <a class="navbar-tool d-none d-lg-flex" href="#">
                     <span class="navbar-tool-tooltip">Deseos</span>
                     <div class="navbar-tool-icon-box">
                         <i class="navbar-tool-icon ci-heart"></i>
                     </div>
-                </a>
+                </a> -->
 
                 <div *ngIf="!isLoggedIn">
                     <a class="navbar-tool ms-1 ms-lg-0 me-n1 me-lg-2" routerLink="/login">
                         <div class="navbar-tool-icon-box">
-                            <i class="navbar-tool-icon ci-user"></i>
+                            <i  [ngStyle]="{'color': empresa.header.color}" class="navbar-tool-icon ci-user"></i>
                         </div>
-                        <div class="navbar-tool-text ms-n3">
-                            <small>Hola, Entrar a</small>Mi cuenta
+                        <div [ngStyle]="{'color': empresa.header.color}" class="navbar-tool-text ms-n3">
+                            <small style="opacity: 0.7;" [ngStyle]="{'color': empresa.header.color}">Hola, Entrar a</small>Mi cuenta
                         </div>
                     </a>
                 </div>

@@ -1,17 +1,21 @@
 <!-- Footer-->
-<a *ngIf="empresa.phone !== 'none'" href="tel:{{empresa.phone}}" target="_blank" class="btn-flotante2 btn btn-dark rounded-pill btn-icon">
-    <i class="ci-phone"></i>
-</a>
-<a [href]="empresa.whatsapp" target="_blank" class="btn-flotante btn btn-success rounded-pill btn-icon p-1">
-    <img src="../../../assets/fonts/whatsappWhite.svg" width="40px" alt="whatsapp">
-</a>
+<ng-container *ngIf="empresa">
+     <a *ngIf="empresa.phone !== 'none'" href="tel:+{{empresa.codephone + empresa.phone}}" target="_blank" class="btn-flotante2 btn btn-dark rounded-pill btn-icon">
+         <i class="ci-phone"></i>
+    </a>
+    <a [href]="'whatsapp://send?text=hola,+me+interesa+tus+productos&phone=+'+empresa.codephone+empresa.whatsapp" target="_blank" class="btn-flotante btn btn-success rounded-pill btn-icon p-1">
+        <img src="../../../assets/fonts/whatsappWhite.svg" width="40px" alt="whatsapp">
+    </a>
+<ng-container>
 <footer class="footer bg-dark pt-5">
     <div class="px-lg-3 pt-2 pb-4">
         <div class="mx-auto px-3" style="max-width: 80rem;">
             <div class="row">
                 <div class="col-xl-2 col-lg-3 col-sm-4 pb-2 mb-4">
                     <div class="mt-n1">
-                        <a class="d-inline-block align-middle" href="#"><img class="d-block mb-4" src="../../../assets/img/{{empresa.logob}}" width="117" alt="Cartzilla"></a>
+                        <a *ngIf="empresa" class="d-inline-block align-middle" routerLink="/home">
+                            <img class="d-block mb-4" [src]="empresa.logo | imagen: 'logo'" width="117" [alt]="empresa.name">
+                        </a>
                     </div>
 
                 </div>
@@ -35,9 +39,9 @@
                     </div>
                     <div class="widget widget-light pb-2 mb-4">
                         <h3 class="widget-title text-light">Siguenos en:</h3>
-                        <a *ngIf="empresa.facebook !== 'none'" class="btn-social bs-light bs-facebook me-2 mb-2" [href]="empresa.facebook" target="_blank"><i class="ci-facebook"></i></a>
-                        <a *ngIf="empresa.facebook !== 'none'" class="btn-social bs-light bs-instagram me-2 mb-2" [href]="empresa.instagram" target="_blank"><i class="ci-instagram"></i></a>
-                        <a *ngIf="empresa.facebook !== 'none'" class="btn-social bs-light bs-instagram me-2 mb-2" [href]="empresa.tiktok" target="_blank"><i class="ci-tiktok"></i></a>
+                        <a *ngIf="empresa.facebook" class="btn-social bs-light bs-facebook me-2 mb-2" [href]="empresa.facebook" target="_blank"><i class="ci-facebook"></i></a>
+                        <a *ngIf="empresa.instagram" class="btn-social bs-light bs-instagram me-2 mb-2" [href]="empresa.instagram" target="_blank"><i class="ci-instagram"></i></a>
+                        <a *ngIf="empresa.tiktok" class="btn-social bs-light bs-instagram me-2 mb-2" [href]="empresa.tiktok" target="_blank"><i class="ci-tiktok"></i></a>
                     </div>
                 </div>
                 <div class="col-xl-4 col-sm-8">
@@ -52,7 +56,7 @@
             </div>
         </div>
     </div>
-    <div class="bg-darker px-lg-3 py-3">
+    <div class="px-lg-3 py-3" style="background: rgba(0, 0, 0, 0.1);">
         <div class="d-sm-flex justify-content-between align-items-center mx-auto px-3" style="max-width: 80rem;">
             <div class="fs-xs text-light opacity-50 text-center text-sm-start py-3">© Todos los derechos reservados por: {{empresa.name}}, {{year}} </div>
             <!-- <div class="py-3"><img class="d-block mx-auto mx-sm-start" src="img/cards-alt.png" width="187" alt="Payment methods"></div> -->

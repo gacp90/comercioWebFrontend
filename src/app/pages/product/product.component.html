@@ -29,6 +29,10 @@
                             <a (click)="portada = img.img" class="product-gallery-thumblist-item pointer" *ngFor="let img of product.img">
                                 <img [src]="img.img | imagen" [alt]="product.name">
                             </a>
+
+                            <a [href]="item.video" target="_blank" class="product-gallery-thumblist-item pointer" *ngFor="let item of product.videos; let i = index">
+                                <img src="../../../assets/img/images.png" [alt]="product.name">
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -88,5 +92,7 @@
         <section class="pb-5 mb-2 mb-xl-4">
             <app-products-slider [params]="{'title': 'PRODUCTOS QUE TE PUEDEN INTERESAR', 'offert': true}"></app-products-slider>
         </section>
+
     </div>
 </section>
+

@@ -61,7 +61,7 @@
                     <!-- TALLAS COLOR -->
                     <label *ngIf="user" class="form-label" for="detailsInput">Talla, color, etc.</label>
                     <div *ngIf="user" class="input-group input-group-sm">                        
-                        <input class="form-control" type="text" id="detailsInput" (change)="addDetails(detailsInput.value, i)" #detailsInput placeholder="Talla, color, etc...">                        
+                        <input class="form-control" type="text" id="detailsInput" [value]="item.details || ''" (change)="addDetails(detailsInput.value, i)" #detailsInput placeholder="Talla, color, etc...">                        
                     </div>
 
                     <!-- BTN ELIMINAR PRODUCTO -->

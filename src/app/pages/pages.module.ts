@@ -18,6 +18,7 @@ import { SidebarComponent } from '../shared/sidebar/sidebar.component';
 import { FooterComponent } from '../shared/footer/footer.component';
 import { CarritoComponent } from './carrito/carrito.component';
 import { SearchComponent } from './search/search.component';
+import { LightboxModule } from 'ngx-lightbox';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { SearchComponent } from './search/search.component';
     CommonModule,
     RouterModule,
     SwiperModule,
-    PipesModule  
+    PipesModule,
+    LightboxModule
   ],
   exports:[
     PagesComponent,

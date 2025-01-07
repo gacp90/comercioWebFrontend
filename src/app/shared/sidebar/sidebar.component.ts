@@ -4,6 +4,8 @@ import { CategoryService } from 'src/app/services/category.service';
 import Swal from 'sweetalert2';
 
 import { environment } from '../../../environments/environment';
+import { EmpresaService } from 'src/app/services/empresa.service';
+import { Empresa } from 'src/app/models/configuracion.model';
 
 @Component({
   selector: 'app-sidebar',
@@ -12,12 +14,18 @@ import { environment } from '../../../environments/environment';
 })
 export class SidebarComponent implements OnInit {
 
-  public empresa:any = environment.empresa;
+  public empresa!: Empresa;
 
-  constructor(  private categoryService: CategoryService){}
+  constructor(  private categoryService: CategoryService,
+                private empresaService: EmpresaService
+  ){}
 
   ngOnInit(): void {
     this.loadCategories();
+    this.empresaService.loadEmpresa()
+      .subscribe( ({empresa}) => {
+        this.empresa = empresa;
+      })
   }
 
   /** ================================================================

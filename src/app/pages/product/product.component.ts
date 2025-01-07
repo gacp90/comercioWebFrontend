@@ -4,10 +4,19 @@ import { Product } from 'src/app/models/products.model';
 import { User } from 'src/app/models/user.model';
 import { CarritoService } from 'src/app/services/carrito.service';
 
+import { Lightbox } from 'ngx-lightbox';
+import { DomSanitizer, Meta, SafeResourceUrl } from '@angular/platform-browser';
+
 // SERIVES
 import { ProductsService } from 'src/app/services/products.service';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
+
+interface CustomAlbum {
+  src: SafeResourceUrl; // Acepta SafeResourceUrl
+  caption: string;
+  thumb: string;
+}
 
 @Component({
   selector: 'app-product',
@@ -21,7 +30,10 @@ export class ProductComponent implements OnInit {
   constructor(  private activatedRoute: ActivatedRoute,
                 private productsService: ProductsService,
                 private userService: UserService,
-                private carritoService: CarritoService){
+                private carritoService: CarritoService,
+                private lightbox: Lightbox,
+                private sanitizer: DomSanitizer,
+                private meta: Meta){
 
                   activatedRoute.params.subscribe( ({id}) => {
 
@@ -35,6 +47,31 @@ export class ProductComponent implements OnInit {
 
   ngOnInit(): void {
     
+  }
+
+  openVideo(index: number): void {    
+
+    const album: CustomAlbum[] = this.product.videos.map((video) => ({
+      src: this.sanitize(video.video),
+      caption: 'Video',
+      thumb: '',
+    }));
+
+    const sanitizedAlbum = album.map((item) => ({
+      src: item.src as unknown as string, // Convierto de manera segura
+      caption: item.caption,
+      thumb: item.thumb,
+    }));
+
+    this.lightbox.open(sanitizedAlbum, index, { wrapAround: true });
+  }
+
+  closeLightbox(): void {
+    this.lightbox.close();
+  }
+
+  sanitize(url: string): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
   /** ================================================================
@@ -61,6 +98,9 @@ export class ProductComponent implements OnInit {
 
     this.productsService.loadProductID(id)
         .subscribe( ({product}) =>{
+
+          // Actualizar descripción
+          this.meta.updateTag({ name: 'description', content: `${product.name} | ${product.description || ''}` || 'La mejor tienda en linea' });
 
           this.portada = 'none';
 

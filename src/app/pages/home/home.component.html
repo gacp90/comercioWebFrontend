@@ -1,4 +1,4 @@
-<section class="container mt-4">
+<section *ngIf="empresa" class="container mt-4">
 
     <!-- SLIDER COMERCIO -->
     <div *ngIf="empresa.name === 'comercio llanero'" id="carouselExample" class="carousel slide" data-bs-ride="carousel">
@@ -143,6 +143,92 @@
                                       role="button"><span class="btn-market-subtitle">Download on the</span><span class="btn-market-title">Google Play</span></a></div> -->
                             </div>
                             <div><img src="../../../assets/img/grocery/slider/e05.png" alt="Image"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!-- SLIDER  MAGIA CAPILAR -->
+    <div *ngIf="empresa.name === 'Magia Capilar'" id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            
+            <div class="carousel-item active">
+
+                <div class="tns-item tns-slide-active tns-fadeIn" id="tns1-item1" style="left: 0%;">
+                    <div class="rounded-3 px-md-5 text-center text-xl-start" style="background-color: #A294F9;">
+                        <div class="d-xl-flex justify-content-between align-items-center px-4 px-sm-5 mx-auto" style="max-width: 1226px;">
+                            <div class="py-5 me-xl-4 mx-auto mx-xl-0" style="max-width: 490px;">
+                                <h2 class="h1 text-light">Hidratación que transforma tu cabello.</h2>
+                                <p class="text-light pb-4">Descubre cómo nuestros productos hidratan profundamente, devolviendo la suavidad y el brillo que siempre soñaste. </p>
+                                <h5 class="text-light pb-3">Compra en {{empresa.name}}</h5>
+                                <!-- <div class="d-flex flex-wrap justify-content-center justify-content-xl-start"><a class="btn-market btn-apple me-2 mb-2" href="#" role="button"><span class="btn-market-subtitle">Download on the</span><span class="btn-market-title">App Store</span></a><a class="btn-market btn-google mb-2" href="#"
+                                        role="button"><span class="btn-market-subtitle">Download on the</span><span class="btn-market-title">Google Play</span></a></div> -->
+                            </div>
+                            <div><img src="../../../assets/img/grocery/slider/m1.png" alt="Image"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="carousel-item">
+
+                <div class="tns-item tns-slide-active tns-fadeIn" id="tns1-item1" style="left: 0%;">
+                    <div class="rounded-3 px-md-5 text-center text-xl-start" style="background-color: #ED9ED6;">
+                        <div class="d-xl-flex justify-content-between align-items-center px-4 px-sm-5 mx-auto" style="max-width: 1226px;">
+                            <div class="py-5 me-xl-4 mx-auto mx-xl-0" style="max-width: 490px;">
+                                <h2 class="h1 text-light">Recupera la fuerza y vitalidad de tu cabello</h2>
+                                <p class="text-light pb-4">Con la línea Milagros, di adiós al daño causado por tintes y calor. ¡Tu cabello merece lo mejor!</p>
+                                <!-- <div class="d-flex flex-wrap justify-content-center justify-content-xl-start"><a class="btn-market btn-apple me-2 mb-2" href="#" role="button"><span class="btn-market-subtitle">Download on the</span><span class="btn-market-title">App Store</span></a><a class="btn-market btn-google mb-2" href="#"
+                                        role="button"><span class="btn-market-subtitle">Download on the</span><span class="btn-market-title">Google Play</span></a></div> -->
+                            </div>
+                            <div><img src="../../../assets/img/grocery/slider/m2.png" alt="Image"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="carousel-item">
+
+                <div class="tns-item tns-slide-active tns-fadeIn" id="tns1-item1" style="left: 0%;">
+                    <div class="rounded-3 px-md-5 text-center text-xl-start" style="background-color: #A1D9FF;">
+                        <div class="d-xl-flex justify-content-between align-items-center px-4 px-sm-5 mx-auto" style="max-width: 1226px;">
+                            <div class="py-5 me-xl-4 mx-auto mx-xl-0" style="max-width: 490px;">
+                                <h2 class="h1 text-light">Di STOP a la caída del cabello</h2>
+                                <p class="text-light pb-4">Soluciones efectivas para prevenir la caída del cabello y fortalecerlo desde la raíz. ¡Dale un giro a tu rutina capilar!</p>
+                                <!-- <div class="d-flex flex-wrap justify-content-center justify-content-xl-start"><a class="btn-market btn-apple me-2 mb-2" href="#" role="button"><span class="btn-market-subtitle">Download on the</span><span class="btn-market-title">App Store</span></a><a class="btn-market btn-google mb-2" href="#"
+                                      role="button"><span class="btn-market-subtitle">Download on the</span><span class="btn-market-title">Google Play</span></a></div> -->
+                            </div>
+                            <div><img src="../../../assets/img/grocery/slider/m3.png" alt="Image"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="carousel-item">
+
+                <div class="tns-item tns-slide-active tns-fadeIn" id="tns1-item1" style="left: 0%;">
+                    <div class="rounded-3 px-md-5 text-center text-xl-start" style="background-color: #FFCDEA;">
+                        <div class="d-xl-flex justify-content-between align-items-center px-4 px-sm-5 mx-auto" style="max-width: 1226px;">
+                            <div class="py-5 me-xl-4 mx-auto mx-xl-0" style="max-width: 490px;">
+                                <h2 class="h1 text-light">Peines y Accesorios que Miman tu Cabello</h2>
+                                <p class="text-light pb-4">Elimina los nudos sin esfuerzo con nuestros accesorios diseñados para proteger y cuidar tu cabello.</p>
+                                <!-- <div class="d-flex flex-wrap justify-content-center justify-content-xl-start"><a class="btn-market btn-apple me-2 mb-2" href="#" role="button"><span class="btn-market-subtitle">Download on the</span><span class="btn-market-title">App Store</span></a><a class="btn-market btn-google mb-2" href="#"
+                                      role="button"><span class="btn-market-subtitle">Download on the</span><span class="btn-market-title">Google Play</span></a></div> -->
+                            </div>
+                            <div><img src="../../../assets/img/grocery/slider/m4.png" alt="Image"></div>
                         </div>
                     </div>
                 </div>

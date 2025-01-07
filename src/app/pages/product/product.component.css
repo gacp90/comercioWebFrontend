@@ -1,0 +1,33 @@
+.video-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  
+  .video-thumbnail {
+    width: 150px;
+    height: 100px;
+    background: #000;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .video-thumbnail .play-icon {
+    font-size: 24px;
+    z-index: 2;
+  }
+  
+  .video-thumbnail p {
+    margin: 0;
+    font-size: 14px;
+    text-align: center;
+    padding: 5px 0;
+  }
+  

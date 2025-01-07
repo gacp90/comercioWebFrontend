@@ -31,7 +31,7 @@ export class CarritoComponent implements OnInit {
                 private pedidosService: PedidosService,
                 private productsService: ProductsService,
                 private userService: UserService){
-    this.carrito = carritoService.cart;
+    this.carrito = carritoService.cart;    
   }
 
   public user!: User;

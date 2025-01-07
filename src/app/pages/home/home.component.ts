@@ -4,6 +4,8 @@ import { environment } from '../../../environments/environment';
 
 // import Swiper core and required modules
 import SwiperCore, { EffectCards, Navigation, Pagination, Scrollbar, A11y, Autoplay } from "swiper";
+import { EmpresaService } from 'src/app/services/empresa.service';
+import { Empresa } from 'src/app/models/configuracion.model';
 
 // install Swiper modules
 SwiperCore.use([EffectCards, Navigation, Pagination, Scrollbar, A11y, Autoplay]);
@@ -15,13 +17,18 @@ SwiperCore.use([EffectCards, Navigation, Pagination, Scrollbar, A11y, Autoplay])
 })
 export class HomeComponent implements OnInit {
 
-  public empresa:any = environment.empresa;
+  public empresa!: Empresa;
 
-  constructor(){
+  constructor(  private empresaService: EmpresaService){
 
   }
 
   ngOnInit(): void {
+
+    this.empresaService.loadEmpresa()
+        .subscribe( ({empresa}) => {
+          this.empresa = empresa;
+        })
 
     let scrollToTop = window.setInterval(() => {
       let pos = window.pageYOffset;
