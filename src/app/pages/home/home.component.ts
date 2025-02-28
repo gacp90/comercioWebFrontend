@@ -6,6 +6,9 @@ import { environment } from '../../../environments/environment';
 import SwiperCore, { EffectCards, Navigation, Pagination, Scrollbar, A11y, Autoplay } from "swiper";
 import { EmpresaService } from 'src/app/services/empresa.service';
 import { Empresa } from 'src/app/models/configuracion.model';
+import { CarruselesService } from 'src/app/services/carruseles.service';
+import { Carrusel } from 'src/app/models/carrusel.model';
+import Swal from 'sweetalert2';
 
 // install Swiper modules
 SwiperCore.use([EffectCards, Navigation, Pagination, Scrollbar, A11y, Autoplay]);
@@ -19,11 +22,15 @@ export class HomeComponent implements OnInit {
 
   public empresa!: Empresa;
 
-  constructor(  private empresaService: EmpresaService){
+  constructor(  private empresaService: EmpresaService,
+                private carruselesService: CarruselesService
+  ){
 
   }
 
   ngOnInit(): void {
+
+    this.loadCarruseles();
 
     this.empresaService.loadEmpresa()
         .subscribe( ({empresa}) => {
@@ -53,6 +60,33 @@ export class HomeComponent implements OnInit {
     pagination: { clickable: true, dynamicBullets: true },
     grabCursor: true
   };
+
+  /** ================================================================
+   *   LOAD CARRUSELES
+  ==================================================================== */
+  public carruseles: Carrusel[] = [];
+  loadCarruseles(){
+
+    let query = {
+      desde: 0,
+      hasta: 0,
+      sort: {},
+      status: true
+    }
+
+    this.carruselesService.loadCarruseles( query )
+        .subscribe( ({carruseles}) => {
+          this.carruseles = carruseles;
+
+          console.log(carruseles);
+          
+
+        }, (err) => {
+          console.log(err);
+          Swal.fire('Error', err.error.msg, 'error');          
+        })
+
+  }
 
 
 }

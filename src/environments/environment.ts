@@ -22,12 +22,18 @@
   base_url: 'https://adminmc.drawve.com/api',
   local_url: 'https://mc.drawve.com'
 
+  base_url: 'https://crmus.poslatino.com/api',
+  local_url: 'https://us.poslatino.com/'
+
+  base_url: 'https://crmori.shopybrands.com/api',
+  local_url: 'https://ori.shopybrands.com'
+
 */
 
 export const environment = {
   production: false,
-  base_url: 'http://localhost:3000/api',
-  local_url: 'http://localhost:4200'
+  base_url: 'https://crmori.shopybrands.com/api',
+  local_url: 'https://ori.shopybrands.com'
 };
 
 /*
