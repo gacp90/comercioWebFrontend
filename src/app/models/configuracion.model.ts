@@ -26,6 +26,7 @@ export class Empresa{
         public descripcion: string,
         public keywords: string,
         public sizeico: string,
+        public sizelogo: string,
         public marketing: boolean,
         public nivelone: _nivel,
         public niveltow: _nivel,

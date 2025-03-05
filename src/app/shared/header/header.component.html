@@ -3,7 +3,7 @@
     <div class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
             <a *ngIf="empresa" class="navbar-brand d-none d-sm-block me-3 me-xl-4 flex-shrink-0" routerLink="/home">
-                <img [src]="empresa.logo | imagen: 'logo'" width="180" [alt]="empresa.name"></a>
+                <img [src]="empresa.logo | imagen: 'logo'" [width]="empresa.sizelogo || '180'" [alt]="empresa.name"></a>
             <a *ngIf="empresa" class="navbar-brand d-sm-none me-2" routerLink="/home">
                 <img [src]="empresa.ico | imagen: 'logo'" [width]="empresa.sizeico" [alt]="empresa.name">
             </a>
